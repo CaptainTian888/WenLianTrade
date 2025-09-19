@@ -1,11 +1,11 @@
 /* 基础样式 */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.6;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* 调整字体堆栈 */
+    line-height: 1.7; /* 增加行高 */
     margin: 0;
     padding: 0;
     color: #333;
-    background-color: #f4f4f4;
+    background-color: #f8f8f8; /* 稍微提亮背景色 */
 }
 
 .container {
@@ -18,8 +18,8 @@ body {
 /* 头部样式 */
 header {
     background: #fff;
-    padding: 10px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px 0; /* 增加上下内边距 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* 调整阴影 */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -29,6 +29,7 @@ header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* 允许在小屏幕上换行 */
 }
 
 .logo {
@@ -37,144 +38,353 @@ header .container {
 }
 
 .logo img {
-    height: 40px;
+    height: 45px; /* 稍微增大logo */
     margin-right: 15px;
 }
 
 .logo h1 {
-    font-size: 24px;
+    font-size: 26px; /* 稍微增大标题 */
     margin: 0;
     color: #2c3e50;
+    font-weight: 600; /* 字体加粗 */
 }
 
-nav ul {
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-toggle {
+    display: none; /* 默认隐藏，在小屏幕上显示 */
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #3498db;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.nav-menu {
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
 }
 
-nav ul li {
-    margin-left: 20px;
+.nav-menu li {
+    margin-left: 30px; /* 增加导航项间距 */
 }
 
-nav a {
+.nav-menu a {
     text-decoration: none;
     color: #555;
-    font-weight: bold;
+    font-weight: 600;
     transition: color 0.3s ease;
+    padding: 5px 0;
+    display: block;
 }
 
-nav a:hover {
-    color: #3498db;
+.nav-menu a:hover {
+    color: #2980b9; /* 调整hover颜色 */
 }
 
 /* 主体内容样式 */
 section {
-    padding: 60px 0;
+    padding: 80px 0; /* 增加section的上下内边距 */
+    background-color: #fff; /* 默认section背景色 */
+    margin-bottom: 20px; /* section之间的间距 */
+    border-radius: 8px; /* 圆角 */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* 柔和阴影 */
+}
+
+section:nth-child(even) { /* 隔行换背景色 */
+    background-color: #fefefe;
 }
 
 section h2 {
     text-align: center;
-    font-size: 36px;
-    margin-bottom: 40px;
+    font-size: 42px; /* 增大标题字号 */
+    margin-bottom: 50px; /* 增加标题下边距 */
     color: #2c3e50;
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+    font-weight: 700;
 }
 
 section h2::after {
     content: '';
     display: block;
-    width: 60px;
-    height: 3px;
+    width: 80px; /* 增加下划线长度 */
+    height: 4px; /* 增加下划线厚度 */
     background: #3498db;
-    margin: 10px auto 0;
+    margin: 15px auto 0;
+    border-radius: 2px;
 }
 
 /* Hero Section */
 #hero {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/1600x900/?logistics,trade') no-repeat center center/cover;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://source.unsplash.com/1600x900/?logistics,trade,warehouse') no-repeat center center/cover; /* 更换背景图 */
     color: #fff;
     text-align: center;
-    padding: 100px 20px;
+    padding: 120px 20px; /* 增加上下内边距 */
+    border-radius: 0; /* Hero区域不需要圆角和阴影 */
+    box-shadow: none;
+    margin-bottom: 0;
 }
 
 #hero h2 {
-    font-size: 48px;
-    margin: 0 0 20px;
+    font-size: 56px; /* 增大标题字号 */
+    margin: 0 0 25px;
     color: #fff;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* 添加文字阴影 */
 }
 
 #hero p {
-    font-size: 20px;
-    max-width: 600px;
-    margin: 0 auto 30px;
+    font-size: 22px; /* 增大段落字号 */
+    max-width: 700px;
+    margin: 0 auto 40px;
+    opacity: 0.9;
 }
 
 .cta-button {
     background: #3498db;
     color: #fff;
-    padding: 12px 30px;
+    padding: 15px 35px; /* 增加按钮大小 */
     text-decoration: none;
-    font-size: 18px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    font-size: 20px;
+    border-radius: 30px; /* 更圆润的按钮 */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-flex; /* 使图标与文字居中 */
+    align-items: center;
+    gap: 10px; /* 文字与图标间距 */
 }
 
 .cta-button:hover {
     background: #2980b9;
+    transform: translateY(-3px); /* 悬停上浮效果 */
+}
+
+/* About Section */
+#about p {
+    font-size: 17px;
+    margin-bottom: 20px;
+    text-align: justify; /* 两端对齐 */
 }
 
 /* Services Section */
-#services {
-    background: #fff;
-}
-
 .service-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 40px; /* 增加网格间距 */
 }
 
 .service-item {
-    background: #f9f9f9;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    background: #fff;
+    padding: 40px; /* 增加内边距 */
+    border-radius: 12px; /* 更大的圆角 */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08); /* 调整阴影 */
     text-align: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee; /* 增加边框 */
 }
 
 .service-item:hover {
-    transform: translateY(-10px);
+    transform: translateY(-12px); /* 悬停上浮效果 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* 更明显的阴影效果 */
+}
+
+.service-icon {
+    font-size: 60px; /* 增大图标大小 */
+    color: #3498db;
+    margin-bottom: 25px; /* 增加图标下边距 */
+    display: block; /* 确保图标独占一行 */
 }
 
 .service-item h3 {
-    color: #3498db;
-    font-size: 22px;
+    color: #2c3e50;
+    font-size: 28px; /* 增大标题字号 */
     margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.service-item p {
+    font-size: 16px;
+    color: #666;
 }
 
 /* Contact Section */
 #contact {
-    background: #eef;
+    background: #f0f4f8; /* 调整背景色 */
     text-align: center;
 }
 
-.contact-info {
-    margin-top: 20px;
+#contact p {
+    font-size: 18px;
+    margin-bottom: 30px;
 }
 
-.contact-info p {
-    margin: 10px 0;
-    font-size: 18px;
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
+
+.contact-item {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.contact-icon {
+    font-size: 45px;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+.contact-item p {
+    margin: 5px 0;
+    font-size: 17px;
+    color: #555;
+}
+
+.contact-item p strong {
+    color: #333;
+}
+
 
 /* 页脚样式 */
 footer {
     background: #2c3e50;
     color: #ecf0f1;
     text-align: center;
-    padding: 20px 0;
+    padding: 25px 0; /* 增加上下内边距 */
+    font-size: 15px;
+    margin-top: 20px; /* 页脚顶部间距 */
+    border-radius: 8px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .logo h1 {
+        font-size: 22px;
+    }
+
+    .nav-toggle {
+        display: block; /* 在小屏幕上显示汉堡菜单 */
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        width: 100%;
+        max-height: 0; /* 默认隐藏菜单 */
+        background-color: #fff;
+        position: absolute;
+        top: 75px; /* 根据header高度调整 */
+        left: 0;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .nav-menu.active {
+        max-height: 300px; /* 展开菜单 */
+    }
+
+    .nav-menu li {
+        margin: 0;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+    }
+
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-menu a {
+        padding: 15px;
+    }
+
+    #hero {
+        padding: 80px 15px;
+    }
+
+    #hero h2 {
+        font-size: 38px;
+    }
+
+    #hero p {
+        font-size: 18px;
+    }
+
+    section h2 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    .service-item, .contact-item {
+        padding: 25px;
+    }
+
+    .service-icon {
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+
+    .service-item h3 {
+        font-size: 24px;
+    }
+
+    .contact-item p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 35px;
+        margin-right: 10px;
+    }
+
+    .logo h1 {
+        font-size: 18px;
+    }
+
+    #hero h2 {
+        font-size: 30px;
+    }
+
+    #hero p {
+        font-size: 16px;
+    }
+
+    .cta-button {
+        padding: 10px 25px;
+        font-size: 16px;
+    }
+
+    section {
+        padding: 50px 0;
+    }
+
+    section h2 {
+        font-size: 28px;
+    }
+
+    .service-item h3 {
+        font-size: 22px;
+    }
 }
