@@ -91,7 +91,7 @@ section h2::after {
 
 /* 英雄区 */
 #hero {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://imgbed.captainzeqi.com/file/1758189601356_稳链贸易.png') no-repeat center center/cover;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://imgbed.captainzeqi.com/file/1758247154092_仓储1.png') no-repeat center center/cover;
     height: 60vh;
     display: flex;
     justify-content: center;
@@ -130,6 +130,11 @@ section h2::after {
 .cta-button:hover {
     background-color: #004d40;
     transform: translateY(-2px);
+}
+
+/* 关于我们 */
+#about .about-content {
+    text-align: center;
 }
 
 /* 业务范围 */
