@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>深圳市稳链贸易有限公司</title>
+    <title>深圳市稳链贸易有限公司 - 官网</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
@@ -13,8 +14,11 @@
                 <img src="https://imgbed.captainzeqi.com/file/1758189601356_稳链贸易.png" alt="公司LOGO - 稳链贸易">
                 <h1>深圳市稳链贸易有限公司</h1>
             </div>
-            <nav>
-                <ul>
+            <nav class="main-nav">
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu">
                     <li><a href="#about">关于我们</a></li>
                     <li><a href="#services">服务范围</a></li>
                     <li><a href="#contact">联系我们</a></li>
@@ -28,7 +32,7 @@
             <div class="container">
                 <h2>专注于日用品批发与供应链管理</h2>
                 <p>我们致力于为客户提供高效、可靠的日用品供应链解决方案，助力您的业务稳步增长。</p>
-                <a href="#services" class="cta-button">了解更多</a>
+                <a href="#services" class="cta-button">了解更多 <i class="fas fa-arrow-right"></i></a>
             </div>
         </section>
 
@@ -36,6 +40,7 @@
             <div class="container">
                 <h2>关于我们</h2>
                 <p>深圳市稳链贸易有限公司是一家专业的贸易服务企业，总部位于深圳。我们秉承“稳健、高效、诚信”的经营理念，专注于日用品批发、供应链管理及产品线上销售。我们拥有一支经验丰富的团队和强大的供应链网络，能够为客户提供一站式的优质服务，确保商品从采购到终端销售的每一个环节都高效顺畅。</p>
+                <p>我们深知供应链的每一个环节都至关重要，因此我们不断优化流程，利用先进技术，为客户创造更大的价值。</p>
             </div>
         </section>
 
@@ -44,14 +49,17 @@
                 <h2>服务范围</h2>
                 <div class="service-grid">
                     <div class="service-item">
+                        <i class="fas fa-box-open service-icon"></i>
                         <h3>日用品批发</h3>
                         <p>我们提供各类优质日用品的批发服务，品类齐全，价格具有竞争力，满足不同客户的采购需求。</p>
                     </div>
                     <div class="service-item">
+                        <i class="fas fa-truck-fast service-icon"></i>
                         <h3>供应链管理</h3>
                         <p>我们提供专业的供应链管理服务，包括采购、仓储、物流、配送等，帮助企业优化流程，降低成本。</p>
                     </div>
                     <div class="service-item">
+                        <i class="fas fa-globe service-icon"></i>
                         <h3>产品线上销售</h3>
                         <p>我们通过自营电商平台和第三方渠道，将精选的优质产品直接销售给消费者，拓展市场。</p>
                     </div>
@@ -62,11 +70,20 @@
         <section id="contact">
             <div class="container">
                 <h2>联系我们</h2>
-                <p>如需合作或有任何疑问，请随时与我们联系。</p>
-                <div class="contact-info">
-                    <p><strong>地址：</strong>深圳市福田区卓越大厦2101</p>
-                    <p><strong>电话：</strong>+86-18954485345</p>
-                    <p><strong>邮箱：</strong>zhangyan@wenlian.trade</p>
+                <p>如需合作或有任何疑问，请随时与我们联系，我们期待与您携手共赢！</p>
+                <div class="contact-info-grid">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <p><strong>地址：</strong>深圳市xxx区xxx街道xxx号</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone contact-icon"></i>
+                        <p><strong>电话：</strong>+86-138-xxxx-xxxx</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <p><strong>邮箱：</strong>zhangyan@wenlian.trade</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -80,4 +97,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
