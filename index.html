@@ -3,130 +3,986 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>稳链贸易</title>
-    <link rel="stylesheet" href="style.css">
+    <title>稳链贸易 — 深圳市稳链贸易有限公司</title>
     <link rel="icon" href="https://imagehub.tianzeqi.dev/file/1758510066196_稳链贸易透明背景.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        --g:       #00a877;
+        --g-dark:  #007f5a;
+        --g-light: #e6f7f2;
+        --g-mid:   rgba(0,168,119,0.13);
+        --g-line:  rgba(0,168,119,0.28);
+
+        --bg:      #f5f4f0;
+        --bg2:     #eeecea;
+        --surface: #ffffff;
+
+        --ink:     #141414;
+        --ink2:    #3d3d3d;
+        --muted:   #8a8a8a;
+        --border:  rgba(0,0,0,0.08);
+        --border2: rgba(0,0,0,0.13);
+
+        --mono:    'JetBrains Mono', monospace;
+        --sans:    'Noto Sans SC', sans-serif;
+        --display: 'Bebas Neue', sans-serif;
+
+        --shadow-sm: 0 2px 12px rgba(0,0,0,0.07);
+        --shadow-md: 0 8px 32px rgba(0,0,0,0.09);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--ink);
+        overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--g); border-radius: 2px; }
+
+    /* ── NAV ── */
+    .nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 9000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+        height: 68px;
+        background: rgba(245,244,240,0.94);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .nav.scrolled {
+        border-color: var(--border2);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+    }
+
+    .nav-logo img {
+        height: 36px; width: 36px;
+        object-fit: contain;
+    }
+
+    .nav-logo-text { display: flex; flex-direction: column; gap: 1px; }
+
+    .nav-logo-main {
+        font-family: var(--display);
+        font-size: 1.35rem;
+        color: var(--ink);
+        letter-spacing: 0.08em;
+        line-height: 1;
+    }
+
+    .nav-logo-sub {
+        font-family: var(--mono);
+        font-size: 0.52rem;
+        color: var(--g);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        list-style: none;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 7px 18px;
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink2);
+        text-decoration: none;
+        border: 1px solid transparent;
+        border-radius: 2px;
+        transition: all 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--g); border-color: var(--g-line); background: var(--g-mid); }
+
+    .nav-cta { background: var(--g) !important; color: #fff !important; border-color: var(--g) !important; }
+    .nav-cta:hover { background: var(--g-dark) !important; border-color: var(--g-dark) !important; color: #fff !important; }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+    }
+
+    .hamburger span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.3s; }
+
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 68px; left: 0; right: 0;
+        background: var(--surface);
+        border-bottom: 2px solid var(--g);
+        padding: 20px 48px;
+        z-index: 8999;
+        flex-direction: column;
+        box-shadow: var(--shadow-md);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        color: var(--ink2);
+        text-decoration: none;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+        text-transform: uppercase;
+        transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover { color: var(--g); }
+
+    /* ── HERO ── */
+    .hero {
+        position: relative;
+        height: 100vh;
+        min-height: 640px;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 88px;
+    }
+
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        background: url('https://imagehub.tianzeqi.dev/file/1758247160900_仓储2.png') center/cover no-repeat;
+        filter: brightness(0.72) saturate(0.85);
+        transform: scale(1.04);
+        transition: transform 10s ease, filter 1.2s ease;
+    }
+
+    .hero-bg.loaded {
+        transform: scale(1);
+        filter: brightness(0.62) saturate(0.78);
+    }
+
+    .hero-dots {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
+        background-size: 36px 36px;
+        pointer-events: none;
+    }
+
+    .hero-vignette {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to top,
+            rgba(245,244,240,0.97) 0%,
+            rgba(245,244,240,0.18) 45%,
+            rgba(0,0,0,0.1) 100%
+        );
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 0 48px;
+        max-width: 1280px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--g);
+        margin-bottom: 18px;
+        opacity: 0;
+        animation: slideUp 0.7s 0.2s ease forwards;
+    }
+
+    .hero-tag::before { content: ''; width: 20px; height: 2px; background: var(--g); }
+
+    .hero-h1 {
+        font-family: var(--display);
+        font-size: clamp(5rem, 12vw, 11rem);
+        color: var(--ink);
+        line-height: 0.9;
+        letter-spacing: 0.02em;
+        margin-bottom: 32px;
+        opacity: 0;
+        animation: slideUp 0.8s 0.38s ease forwards;
+    }
+
+    .hero-h1 em { color: var(--g); font-style: normal; }
+
+    .hero-bottom {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 40px;
+        opacity: 0;
+        animation: slideUp 0.8s 0.56s ease forwards;
+    }
+
+    .hero-desc {
+        max-width: 400px;
+        font-size: 0.95rem;
+        font-weight: 300;
+        color: var(--ink2);
+        line-height: 1.85;
+    }
+
+    .hero-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--g);
+        color: #fff;
+        text-decoration: none;
+        padding: 14px 28px;
+        font-family: var(--mono);
+        font-size: 0.76rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: 2px solid var(--g);
+        cursor: pointer;
+        transition: all 0.25s;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .hero-btn:hover {
+        background: transparent;
+        color: var(--g);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(0,168,119,0.18);
+    }
+
+    .hero-btn svg { width: 15px; height: 15px; transition: transform 0.25s; }
+    .hero-btn:hover svg { transform: translateX(5px); }
+
+    /* floating stats */
+    .hero-stats {
+        position: absolute;
+        right: 48px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .hero-stat {
+        background: rgba(245,244,240,0.92);
+        backdrop-filter: blur(12px);
+        border-left: 3px solid var(--g);
+        padding: 16px 22px;
+        min-width: 130px;
+        opacity: 0;
+        animation: fadeIn 0.6s forwards;
+    }
+
+    .hero-stat:nth-child(1) { animation-delay: 0.9s; }
+    .hero-stat:nth-child(2) { animation-delay: 1.1s; }
+    .hero-stat:nth-child(3) { animation-delay: 1.3s; }
+
+    .hero-stat-num { font-family: var(--display); font-size: 2.2rem; color: var(--g); line-height: 1; }
+    .hero-stat-label { font-family: var(--mono); font-size: 0.57rem; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-top: 3px; }
+
+    /* ── TICKER ── */
+    .ticker { background: var(--g); overflow: hidden; padding: 11px 0; white-space: nowrap; }
+
+    .ticker-inner { display: inline-flex; animation: ticker 30s linear infinite; }
+
+    .ticker-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 18px;
+        padding: 0 28px;
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #fff;
+    }
+
+    .ticker-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.45); border-radius: 50%; }
+
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTIONS ── */
+    .section { padding: 100px 0; }
+
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+    .sec-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 64px; }
+
+    .sec-idx { font-family: var(--mono); font-size: 0.62rem; color: var(--g); letter-spacing: 0.18em; padding-top: 4px; }
+
+    .sec-title {
+        font-family: var(--display);
+        font-size: clamp(2.8rem, 5vw, 4.5rem);
+        color: var(--ink);
+        letter-spacing: 0.04em;
+        line-height: 0.95;
+    }
+
+    .sec-title em { color: var(--g); font-style: normal; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+    .about-body { font-size: 0.97rem; font-weight: 300; color: var(--ink2); line-height: 1.95; margin-bottom: 24px; }
+
+    .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+
+    .tag {
+        display: inline-block;
+        font-family: var(--mono);
+        font-size: 0.63rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--g);
+        border: 1px solid var(--g-line);
+        padding: 6px 14px;
+        border-radius: 2px;
+        background: var(--g-light);
+        transition: all 0.2s;
+        cursor: default;
+    }
+
+    .tag:hover { background: var(--g); color: #fff; border-color: var(--g); }
+
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+
+    .about-stat {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        padding: 28px 24px;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.3s, background 0.3s;
+    }
+
+    .about-stat::after {
+        content: '';
+        position: absolute;
+        left: 0; top: 0; bottom: 0;
+        width: 3px;
+        background: var(--g);
+        transform: scaleY(0);
+        transform-origin: bottom;
+        transition: transform 0.3s ease;
+    }
+
+    .about-stat:hover { background: var(--g-light); border-color: var(--g-line); }
+    .about-stat:hover::after { transform: scaleY(1); }
+
+    .about-stat-num { font-family: var(--display); font-size: 2.8rem; color: var(--g); line-height: 1; margin-bottom: 4px; }
+    .about-stat-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--bg); }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+    .svc {
+        background: var(--surface);
+        padding: 40px 32px;
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: default;
+    }
+
+    .svc::before {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 2px;
+        background: var(--g);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s ease;
+    }
+
+    .svc:hover { border-color: var(--g-line); box-shadow: var(--shadow-md); transform: translateY(-5px); }
+    .svc:hover::before { transform: scaleX(1); }
+
+    .svc-num {
+        position: absolute;
+        top: 16px; right: 20px;
+        font-family: var(--display);
+        font-size: 4.5rem;
+        color: rgba(0,0,0,0.04);
+        line-height: 1;
+        transition: color 0.3s;
+    }
+
+    .svc:hover .svc-num { color: rgba(0,168,119,0.07); }
+
+    .svc-icon {
+        width: 44px; height: 44px;
+        background: var(--g-light);
+        border: 1px solid var(--g-line);
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        margin-bottom: 22px;
+        transition: background 0.3s;
+        position: relative;
+        z-index: 1;
+    }
+
+    .svc:hover .svc-icon { background: var(--g); }
+
+    .svc h3 { font-size: 0.97rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; position: relative; z-index: 1; }
+    .svc p  { font-size: 0.83rem; font-weight: 300; color: var(--muted); line-height: 1.75; position: relative; z-index: 1; }
+
+    /* ── SOLUTION ── */
+    #solution { background: var(--g); }
+
+    .flow-track { position: relative; }
+
+    .flow-line {
+        position: absolute;
+        top: 27px; left: 0; right: 0;
+        height: 1px;
+        background: rgba(255,255,255,0.35);
+    }
+
+    .flow-steps { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; position: relative; }
+
+    .flow-step { display: flex; flex-direction: column; align-items: center; padding: 0 6px; cursor: default; transition: transform 0.3s; }
+    .flow-step:hover { transform: translateY(-8px); }
+
+    .flow-dot {
+        width: 54px; height: 54px;
+        background: rgba(255,255,255,0.15);
+        border: 2px solid rgba(255,255,255,0.5);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--display);
+        font-size: 1.4rem;
+        color: #fff;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 2;
+        transition: all 0.3s;
+        backdrop-filter: blur(4px);
+    }
+
+    .flow-step:hover .flow-dot {
+        background: #fff;
+        color: var(--g);
+        border-color: #fff;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .flow-step h3 { font-size: 0.8rem; font-weight: 700; color: #fff; text-align: center; margin-bottom: 8px; }
+    .flow-step p  { font-size: 0.7rem; font-weight: 300; color: rgba(255,255,255,0.75); text-align: center; line-height: 1.6; }
+
+    /* solution section title override */
+    #solution .sec-idx  { color: rgba(255,255,255,0.5); }
+    #solution .sec-title { color: #fff; }
+    #solution .sec-title em { color: rgba(255,255,255,0.45); font-style: normal; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--surface); padding-bottom: 0; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+
+    .contact-left {
+        background: var(--ink);
+        padding: 64px 56px;
+    }
+
+    .contact-left .sec-title { color: #fff; }
+    .contact-left .sec-title em { color: var(--g); font-style: normal; }
+    .contact-left .sec-idx { color: rgba(255,255,255,0.3); }
+
+    .contact-tagline {
+        font-size: 0.92rem;
+        font-weight: 300;
+        color: rgba(255,255,255,0.55);
+        line-height: 1.9;
+        margin-top: 20px;
+        max-width: 340px;
+    }
+
+    .contact-deco { margin-top: 48px; display: flex; gap: 8px; }
+    .deco-bar { height: 4px; border-radius: 2px; background: var(--g); }
+    .deco-bar:nth-child(1) { width: 40px; }
+    .deco-bar:nth-child(2) { width: 20px; opacity: 0.5; }
+    .deco-bar:nth-child(3) { width: 10px; opacity: 0.25; }
+
+    .contact-right {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        padding: 64px 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .contact-item {
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        padding: 22px 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:first-child { padding-top: 0; }
+    .contact-item:last-child  { border-bottom: none; padding-bottom: 0; }
+
+    .contact-icon-box {
+        width: 40px; height: 40px;
+        background: var(--g-light);
+        border: 1px solid var(--g-line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+        border-radius: 2px;
+    }
+
+    .contact-detail label {
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.58rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--g);
+        margin-bottom: 5px;
+    }
+
+    .contact-detail span,
+    .contact-detail a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--ink);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .contact-detail a:hover { color: var(--g); }
+
+    /* ── FOOTER ── */
+    .footer {
+        background: var(--ink);
+        padding: 24px 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .footer-copy { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.28); }
+    .footer-brand { font-family: var(--display); font-size: 1.15rem; letter-spacing: 0.12em; color: var(--g); opacity: 0.65; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(22px); }
+        to   { opacity: 1; transform: none; }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+        .services-grid { grid-template-columns: repeat(2, 1fr); }
+        .flow-steps { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .flow-line  { display: none; }
+        .about-grid { grid-template-columns: 1fr; gap: 48px; }
+        .contact-grid { grid-template-columns: 1fr; }
+        .hero-stats { display: none; }
+    }
+
+    @media (max-width: 768px) {
+        .nav        { padding: 0 24px; }
+        .nav-links  { display: none; }
+        .hamburger  { display: flex; }
+        .wrap       { padding: 0 24px; }
+        .section    { padding: 64px 0; }
+        .hero-content { padding: 0 24px; }
+        .hero-h1    { font-size: 4.5rem; }
+        .hero-bottom { flex-direction: column; align-items: flex-start; gap: 24px; }
+        .services-grid { grid-template-columns: 1fr; }
+        .flow-steps { grid-template-columns: repeat(2, 1fr); }
+        .about-stats { grid-template-columns: 1fr 1fr; }
+        .contact-left,
+        .contact-right { padding: 40px 28px; }
+        .footer     { flex-direction: column; gap: 10px; text-align: center; padding: 20px 24px; }
+        .sec-head   { flex-direction: column; gap: 6px; }
+        .mobile-menu { padding: 20px 24px; }
+    }
+    </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-container">
-            <img src="https://imagehub.tianzeqi.dev/file/1758510066196_稳链贸易透明背景.png" alt="公司LOGO" class="company-logo">
-            <h1>深圳市稳链贸易有限公司</h1>
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+    <a href="#hero" class="nav-logo">
+        <img src="https://imagehub.tianzeqi.dev/file/1758510066196_稳链贸易透明背景.png" alt="稳链贸易">
+        <div class="nav-logo-text">
+            <span class="nav-logo-main">稳链贸易</span>
+            <span class="nav-logo-sub">Wenlian Trade Co., Ltd.</span>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#about">关于我们</a></li>
-                <li><a href="#services">业务范围</a></li>
-                <li><a href="#solution">解决方案</a></li>
-                <li><a href="#contact">联系我们</a></li>
-            </ul>
-        </nav>
-    </header>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#about">关于我们</a></li>
+        <li><a href="#services">业务范围</a></li>
+        <li><a href="#solution">解决方案</a></li>
+        <li><a href="#contact" class="nav-cta">立即联系</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
 
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h2>稳致远，链未来</h2>
-                <p>一站式日用品、礼品端对端解决方案服务商</p>
-                <a href="#contact" class="cta-button">立即联系我们</a>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#about">关于我们</a>
+    <a href="#services">业务范围</a>
+    <a href="#solution">解决方案</a>
+    <a href="#contact">立即联系</a>
+</div>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-dots"></div>
+    <div class="hero-vignette"></div>
+
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <div class="hero-stat-num">10+</div>
+            <div class="hero-stat-label">年行业经验</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-num">500+</div>
+            <div class="hero-stat-label">合作客户</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-num">6</div>
+            <div class="hero-stat-label">核心业务板块</div>
+        </div>
+    </div>
+
+    <div class="hero-content">
+        <div class="hero-tag">深圳市稳链贸易有限公司</div>
+        <h1 class="hero-h1">稳致<em>远</em><br>链未<em>来</em></h1>
+        <div class="hero-bottom">
+            <p class="hero-desc">一站式日用品、礼品端对端解决方案服务商 —— 从产品采购、定制设计到仓储配送，为您提供全程无忧的供应链服务。</p>
+            <a href="#contact" class="hero-btn">
+                立即联系我们
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 8h10M9 4l4 4-4 4"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+    <div class="ticker-inner">
+        <span class="ticker-item">日用品批发<span class="ticker-dot"></span></span>
+        <span class="ticker-item">礼品定制<span class="ticker-dot"></span></span>
+        <span class="ticker-item">仓储物流<span class="ticker-dot"></span></span>
+        <span class="ticker-item">企业解决方案<span class="ticker-dot"></span></span>
+        <span class="ticker-item">产品线上零售<span class="ticker-dot"></span></span>
+        <span class="ticker-item">端对端配送<span class="ticker-dot"></span></span>
+        <span class="ticker-item">定制化设计<span class="ticker-dot"></span></span>
+        <span class="ticker-item">稳致远 · 链未来<span class="ticker-dot"></span></span>
+        <span class="ticker-item">日用品批发<span class="ticker-dot"></span></span>
+        <span class="ticker-item">礼品定制<span class="ticker-dot"></span></span>
+        <span class="ticker-item">仓储物流<span class="ticker-dot"></span></span>
+        <span class="ticker-item">企业解决方案<span class="ticker-dot"></span></span>
+        <span class="ticker-item">产品线上零售<span class="ticker-dot"></span></span>
+        <span class="ticker-item">端对端配送<span class="ticker-dot"></span></span>
+        <span class="ticker-item">定制化设计<span class="ticker-dot"></span></span>
+        <span class="ticker-item">稳致远 · 链未来<span class="ticker-dot"></span></span>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="sec-idx">// 01</span>
+            <h2 class="sec-title">关于<em>我们</em></h2>
+        </div>
+        <div class="about-grid">
+            <div class="reveal">
+                <p class="about-body">深圳市稳链贸易有限公司，坐落于中国深圳，是一家致力于为线上卖家、企业及机构提供一站式供应链解决方案的现代化服务商。我们深耕日用品与礼品两大领域，凭借专业的供应链管理、高效的物流仓储及强大的线上销售能力，为客户提供从产品采购、定制设计到仓储配送的端到端服务。</p>
+                <p class="about-body">我们秉承"诚信为本，稳致远"的经营理念，期待成为您最可信赖的合作伙伴，共同链通美好未来。</p>
+                <div class="about-tags">
+                    <span class="tag">供应链管理</span>
+                    <span class="tag">仓储物流</span>
+                    <span class="tag">礼品定制</span>
+                    <span class="tag">线上零售</span>
+                    <span class="tag">企业服务</span>
+                    <span class="tag">端对端交付</span>
+                </div>
             </div>
-        </section>
-
-        <section id="about">
-            <h2>关于我们</h2>
-            <div class="about-content">
-                <p>深圳市稳链贸易有限公司，坐落于中国深圳，是一家致力于为线上卖家、企业及机构提供一站式供应链解决方案的现代化服务商。我们深耕日用品与礼品两大领域，凭借专业的供应链管理、高效的物流仓储及强大的线上销售能力，为客户提供从产品采购、定制设计到仓储配送的端到端服务。我们秉承“诚信为本，稳致远”的经营理念，期待成为您最可信赖的合作伙伴，共同链通美好未来。</p>
+            <div class="about-stats reveal" style="transition-delay:0.15s">
+                <div class="about-stat">
+                    <div class="about-stat-num">10+</div>
+                    <div class="about-stat-label">年行业深耕</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat-num">500+</div>
+                    <div class="about-stat-label">企业合作客户</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat-num">99%</div>
+                    <div class="about-stat-label">客户满意度</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat-num">24H</div>
+                    <div class="about-stat-label">快速响应承诺</div>
+                </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <section id="solution">
-            <h2>解决方案</h2>
-            <div class="flowchart-container">
+<!-- SERVICES -->
+<section id="services" class="section">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="sec-idx">// 02</span>
+            <h2 class="sec-title">业务<em>范围</em></h2>
+        </div>
+        <div class="services-grid">
+            <div class="svc reveal">
+                <span class="svc-num">01</span>
+                <div class="svc-icon">🏪</div>
+                <h3>日用品批发</h3>
+                <p>涵盖家居、个护、厨房用品等多个品类，货源稳定，价格极具竞争力，满足大批量采购需求。</p>
+            </div>
+            <div class="svc reveal" style="transition-delay:0.08s">
+                <span class="svc-num">02</span>
+                <div class="svc-icon">🏭</div>
+                <h3>物流仓储管理</h3>
+                <p>提供专业仓储解决方案，包括货物存储、订单拣选、包装与配送，确保货物安全高效流转。</p>
+            </div>
+            <div class="svc reveal" style="transition-delay:0.16s">
+                <span class="svc-num">03</span>
+                <div class="svc-icon">🛒</div>
+                <h3>产品线上零售</h3>
+                <p>通过自营及合作电商平台，将优质商品直达消费者，拓展市场渠道，提升品牌影响力。</p>
+            </div>
+            <div class="svc reveal" style="transition-delay:0.24s">
+                <span class="svc-num">04</span>
+                <div class="svc-icon">🎁</div>
+                <h3>礼品批发与零售</h3>
+                <p>精选创意、实用礼品，从批量采购到个性化零售，满足企业馈赠与个人送礼的全方位需求。</p>
+            </div>
+            <div class="svc reveal" style="transition-delay:0.32s">
+                <span class="svc-num">05</span>
+                <div class="svc-icon">✏️</div>
+                <h3>定制化礼品设计与生产</h3>
+                <p>根据品牌文化与需求，提供创意礼品设计、打样到批量生产的一站式服务，打造专属企业形象礼品。</p>
+            </div>
+            <div class="svc reveal" style="transition-delay:0.40s">
+                <span class="svc-num">06</span>
+                <div class="svc-icon">🏢</div>
+                <h3>企业礼品一站式方案</h3>
+                <p>针对年会、商务馈赠、员工福利等场景，提供从策划、甄选到配送执行的完整端对端服务。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution" class="section">
+    <div class="wrap">
+        <div class="sec-head reveal">
+            <span class="sec-idx">// 03</span>
+            <h2 class="sec-title">解决<em>方案</em></h2>
+        </div>
+        <div class="flow-track reveal">
+            <div class="flow-line"></div>
+            <div class="flow-steps">
                 <div class="flow-step">
-                    <div class="step-number">1</div>
+                    <div class="flow-dot">1</div>
                     <h3>同步客户需求</h3>
                     <p>深入沟通，全面了解您的具体要求和目标。</p>
                 </div>
                 <div class="flow-step">
-                    <div class="step-number">2</div>
+                    <div class="flow-dot">2</div>
                     <h3>定制解决方案</h3>
-                    <p>基于需求，为您量身定制最优的供应链或礼品方案。</p>
+                    <p>为您量身定制最优的供应链或礼品方案。</p>
                 </div>
                 <div class="flow-step">
-                    <div class="step-number">3</div>
+                    <div class="flow-dot">3</div>
                     <h3>生产设计打样</h3>
-                    <p>进行创意设计和样品制作，确保产品符合您的期待。</p>
+                    <p>创意设计和样品制作，确保符合期待。</p>
                 </div>
                 <div class="flow-step">
-                    <div class="step-number">4</div>
-                    <h3>客户效果确定</h3>
-                    <p>您确认样品，并对方案最终定稿。</p>
+                    <div class="flow-dot">4</div>
+                    <h3>效果确认定稿</h3>
+                    <p>您确认样品，方案最终定稿。</p>
                 </div>
                 <div class="flow-step">
-                    <div class="step-number">5</div>
+                    <div class="flow-dot">5</div>
                     <h3>工厂生产</h3>
                     <p>严格把控质量，按时高效完成大批量生产。</p>
                 </div>
                 <div class="flow-step">
-                    <div class="step-number">6</div>
+                    <div class="flow-dot">6</div>
                     <h3>打包发货</h3>
-                    <p>提供灵活的交付模式，支持单件代发或成批交付。</p>
+                    <p>支持单件代发或成批交付，灵活配送。</p>
                 </div>
                 <div class="flow-step">
-                    <div class="step-number">7</div>
+                    <div class="flow-dot">7</div>
                     <h3>订单交付确认</h3>
                     <p>确保货物安全送达，完成订单交付。</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
-        <section id="services">
-            <h2>业务范围</h2>
-            <div class="services-container">
-                <div class="service-item">
-                    <h3>日用品批发</h3>
-                    <p>我们提供各类高品质日用品的批发业务，涵盖家居、个护、厨房用品等多个品类，货源稳定，价格极具竞争力。</p>
+<!-- CONTACT -->
+<section id="contact" class="section">
+    <div class="wrap" style="padding:0">
+        <div class="contact-grid">
+            <div class="contact-left reveal">
+                <div class="sec-head" style="margin-bottom:20px">
+                    <span class="sec-idx">// 04</span>
+                    <h2 class="sec-title">联系<em>我们</em></h2>
                 </div>
-                <div class="service-item">
-                    <h3>物流仓储管理</h3>
-                    <p>提供专业的仓储解决方案，包括货物存储、订单拣选、包装与配送，确保您的货物安全、高效流转。</p>
-                </div>
-                <div class="service-item">
-                    <h3>产品线上零售</h3>
-                    <p>通过自营及合作的电商平台，我们将优质商品直接送达消费者手中，拓展市场渠道，提升品牌影响力。</p>
-                </div>
-                <div class="service-item">
-                    <h3>礼品批发与零售</h3>
-                    <p>精选各类创意、实用礼品，提供从批量采购到个性化零售的全方位服务，满足不同客户的送礼需求。</p>
-                </div>
-                <div class="service-item">
-                    <h3>定制化礼品设计与生产</h3>
-                    <p>根据您的品牌文化与需求，提供创意礼品设计、打样到批量生产的一站式服务，打造专属企业形象礼品。</p>
-                </div>
-                <div class="service-item">
-                    <h3>企业及机构礼品一站式解决方案</h3>
-                    <p>针对企业年会、商务馈赠、员工福利等场景，提供从方案策划、产品甄选到配送执行的端到端服务。</p>
+                <p class="contact-tagline">欢迎洽谈合作！无论您有日用品批发、礼品定制还是供应链外包需求，我们的团队随时准备为您提供专业方案。</p>
+                <div class="contact-deco">
+                    <div class="deco-bar"></div>
+                    <div class="deco-bar"></div>
+                    <div class="deco-bar"></div>
                 </div>
             </div>
-        </section>
-
-        <section id="contact">
-            <h2>联系我们</h2>
-            <div class="contact-info">
-                <p><strong>联系人：</strong> 张女士</p>
-                <p><strong>电话：</strong> +86 18954485345</p>
-                <p><strong>邮箱：</strong> zhangyan@wenlian.trade</p>
-                <p><strong>地址：</strong> 中国广东省深圳市福田区福华一路卓越大厦2101-2110</p>
+            <div class="contact-right reveal" style="transition-delay:0.15s">
+                <div class="contact-item">
+                    <div class="contact-icon-box">👤</div>
+                    <div class="contact-detail">
+                        <label>联系人</label>
+                        <span>张女士</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon-box">📱</div>
+                    <div class="contact-detail">
+                        <label>电话 / 微信</label>
+                        <a href="tel:+8618954485345">+86 189 5448 5345</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon-box">✉️</div>
+                    <div class="contact-detail">
+                        <label>电子邮件</label>
+                        <a href="mailto:zhangyan@wenlian.trade">zhangyan@wenlian.trade</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon-box">📍</div>
+                    <div class="contact-detail">
+                        <label>公司地址</label>
+                        <span>深圳市福田区福华一路卓越大厦 2101–2110</span>
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
+</section>
 
-    <footer>
-        <p>&copy; 2025 深圳市稳链贸易有限公司. 版权所有.</p>
-    </footer>
+<!-- FOOTER -->
+<footer class="footer">
+    <span class="footer-copy">&copy; 2025 深圳市稳链贸易有限公司 · 版权所有</span>
+    <span class="footer-brand">WENLIAN</span>
+</footer>
 
-    <script src="script.js"></script>
+<script>
+(function () {
+    document.getElementById('heroBg').addEventListener('load', function(){}, { once: true });
+    setTimeout(() => document.getElementById('heroBg').classList.add('loaded'), 80);
+
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            e.preventDefault();
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 68, behavior: 'smooth' });
+            document.getElementById('mobileMenu').classList.remove('open');
+        });
+    });
+
+    document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.toggle('open');
+    });
+
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
 </body>
 </html>
-
